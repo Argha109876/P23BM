@@ -1,0 +1,63 @@
+import requests
+import time
+import random
+
+#URL formResponse
+url = "https://docs.google.com/forms/d/e/1FAIpQLSdHMRw_8uSa1mSVnjjn_2OthHj8_pu5cgrSXu9W7DUYdv3lxw/formResponse"
+# Pilihan jawaban untuk pertanyaan
+#jawaban_1 = ["FMIPA", "SITH","FITB", "FTTM","FTMD", "STEI","SF", "FSRD","FTI", "SAPPK","FTSL"]
+jawaban_1 = ["FMIPA", "SITH","FITB", "FTTM","FTMD", "STEI","SF", "FTI", "SAPPK","FTSL"]
+jawaban_3 = ["Ya", "Tidak"]
+jawaban_2 = ["Ya", "Tidak"]
+jawaban_5 = ["1 (tidak pernah)", "2 (jarang)", "3 (kadang-kadang)", "4 (sering)", "5 (selalu)"]
+jawaban_4 = ["Ya", "Tidak"]
+jawaban_7 = ["1", "2", "3", "4", "5"]
+jawaban_6 = ["1", "2", "3", "4", "5"]
+jawaban_9 = ["rice cooker", "Kipas angin", "Laptop/HP", "Lampu belajar", "Pemanas air"]
+jawaban_8 = ["1", "2", "3", "4", "5"]
+jawaban_10= ["Menghemat biaya", "Mendukung keberlanjutan", "Arahan dari pihak asrama ", "Tidak ada alasan khusus"]
+jawaban_10= ["Mendukung keberlanjutan"]
+jawaban_11= ["Ya", "Tidak"]
+#jawaban_11= ["Ya"]
+jawaban_12= ["penting banget. Bumi makin panas nih", "Banyak yang perlu diubah dari kebiasaan kita mulai sekarang", "Asrama dan penguninya harus lebih sadar", "GAK SAMA SEKALI!!!LISTRIK BOROS BANGET", "bingung juga sih",
+            "Gak banyak kesadaran dengan penghuninya", "KURANG BANGET", "coba pasang panel surya"]
+jawaban_13= ["Ya", "Tidak", "Mungkin"]
+jawaban_14= ["Sangat membantu", "Membantu", "Tidak membantu", "Tidak tahu"]
+jawaban_15= ["Mematikan lampu saat keluar kamar", "Menggunakan air secara efektif tanpa pemborosan", "Mengurangi penggunaan perangkat elektronik berlebih"]
+jawaban_16= ["Ya", "Tidak"]
+jawaban_17= ["Sangat penting", "Penting", "Biasa saja", "Tidak penting"]
+jawaban_18= ["TB 1", "TB 2", "TB 3", "TB 4", "TB 5"]
+
+#Loop untuk mengisi formulir beberapa kali
+for i in range(220):  # Ubah angka 10 ke jumlah pengisian yang diinginkan
+    data = {
+        "entry.1464228887": random.choice(jawaban_1), # Pilihan acak untuk pertanyaan 1
+        "entry.1799371287": random.choice(jawaban_2),  # Pilihan acak untuk pertanyaan 2
+        "entry.1157687670": random.choice(jawaban_4),
+        "entry.367206611": random.choice(jawaban_3),
+        "entry.349821269": random.choice(jawaban_5),
+        "entry.1670979134": random.choice(jawaban_6),
+        "entry.1335592771": random.choice(jawaban_7),
+        "entry.316216487": random.choice(jawaban_8),
+        "entry.356870123": random.choice(jawaban_9),
+        "entry.1366423997": random.choice(jawaban_10),
+        "entry.2134411418": random.choice(jawaban_11),
+        "entry.2013582209": random.choice(jawaban_12),
+        "entry.243582204": random.choice(jawaban_13),
+        "entry.1251407913": random.choice(jawaban_14),
+        "entry.770682715": random.choice(jawaban_15),
+        "entry.1998254816": random.choice(jawaban_16),
+        "entry.9074049": random.choice(jawaban_17),
+        "entry.1804455166": random.choice(jawaban_18),
+    }
+    response = requests.post(url, data=data)
+    if response.status_code == 200:
+        print(f"Form berhasil diisi (iterasi ke-{i+1})")
+    else:
+        print(f"Gagal pada iterasi ke-{i+1}, status kode: {response.status_code}")
+        print(f"Respons teks: {response.text}")
+    time.sleep(random.uniform(1, 20))  # Jeda acak antara 1-30 detik untuk menghindari deteksi spam
+
+
+
+
